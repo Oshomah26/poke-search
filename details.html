@@ -19,6 +19,42 @@
     <title>Document</title>
 </head>
 <body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">PokéSearch!</div>
+        </div>
+    </header>
+
+    <section class="search">
+        <div class="container">
+            <div id="alert"></div>
+            <form action="/search.html" class="search-form">
+                <div class="search-card">
+                    <input type="text" name="search-term" id="search-term" placeholder="Enter search term"/>
+                    <button class="btn" type="submit">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Popular cards -->
+    <section class="container">
+        <h2>Popular cards</h2>
+        <div class="popular-cards" id="grid">
+            <div class="card">
+                <a href="/details.html?id=1">
+                    <img src="/images/default_image.png" alt="Card-title" class="card-img-top">
+                </a>
+                <div class="card-body"><h5 class="card-title">Card title</h5>
+                    <p class="card-text">
+                        <small class="text-muted">TCG type: Grass</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
     
 </body>
 </html>
