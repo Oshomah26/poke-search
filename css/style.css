@@ -11,7 +11,7 @@
 }
 
 body{
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', 'Poller One', sans-serif;
     font-size: 16px;
     background: var(--color-primary) ;
     color: bisque;
@@ -44,5 +44,37 @@ text-secondary{
 .btn:disabled{
     border-color: antiquewhite;
     cursor: not-allowed;
+}
+
+.btn:disabled:hover{
+    background: transparent;
+    color: #fff;
+}
+
+.container{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.main-header{
+    padding: 20px 0;
+    background: rgb(3, 1, 30);
+}
+
+.main-header .logo{
+    color: #ffe958;
+    font-size: 35px;
+    font-weight: 700;
+    font-family: 'Poller One', cursive;
+
 }
 
