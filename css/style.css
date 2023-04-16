@@ -14,7 +14,7 @@ body{
     font-family: 'Poppins', 'Poller One', sans-serif;
     font-size: 16px;
     background: var(--color-primary) ;
-    color: bisque;
+    color: #F9E900;
     overflow-x: hidden;
 }
 
@@ -140,3 +140,66 @@ text-secondary{
 .main-footer .container  .social-links a:hover {
     color: bisque;
 }
+
+/* Slider */
+
+.swiper {
+    width: 100%;
+    height: 50%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .swiper-rating {
+    padding: 10px;
+  }
+
+  /* Card details */
+
+  .details {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    margin: 50px 0 30px;
+    color: #fff;
+  }
+
+  @media (max-width: 700px) {
+    .details{
+        display: block;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: #ccc solid;
+    }
+  }
+
+  .details img{
+    width: 400px;
+    height: 100%;
+    margin-right: 60px;
+    object-fit: cover;
+  }
+
+  .details p {
+    margin: 20px 0;
+  }
+  /* .main-details {
+    margin-left: 10px;
+  } */
+
+
