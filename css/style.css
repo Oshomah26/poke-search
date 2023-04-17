@@ -216,5 +216,36 @@ text-secondary{
     margin-top: 20px;
   }
 
+  /* Search */
+
+  .search {
+    padding: 60px;
+    margin-bottom: 40px;
+  }
+
+  .search .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .search .container h2{
+    margin-bottom: 20px;
+  }
+
+  .search .container form{
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .search-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+
+  }
+
 
 
