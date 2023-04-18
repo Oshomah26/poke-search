@@ -8,9 +8,24 @@ const global = {
 }
 
 async function displayPopularcards(){
-    // const response = await fetch ('https://api.pokemontcg.io/v2/cards');
     const results = await fetchAPIData('cards');
-    console.log(results.data);
+    (results.data).forEach(card => {
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.innerHTML = `
+        <a href="/details.html?id=1">
+                    <img src="https://images.pokemontcg.io/${(card.id).split('-')[0]}/1.png" alt="Card-title" class="card-img-top">
+                </a>
+                <div class="card-body"><h5 class="card-title">${card.name}</h5>
+                    <p class="card-text">
+                        <small class="text-muted">Rarity: ${card.rarity}</small>
+                    </p>
+                </div>
+        `
+        document.querySelector('#popular-cards').appendChild(div);
+
+    })
+    console.log(results);
 }
 
 async function fetchAPIData(endpoint){
