@@ -7,6 +7,11 @@ function init(){
         case'/index.html':
         console.log(global.currentPage);
         break;
+        case'/details.html':
+        console.log(global.currentPage);
+        break;
+        case'/search.html':
+        console.log(global.currentPage);
     }
 }
 
