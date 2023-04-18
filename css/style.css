@@ -19,7 +19,7 @@ body{
 }
 
 a {
-    color: bisque;
+    color: var(--color-secondary);
     text-decoration: none;
 }
 
