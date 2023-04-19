@@ -1,5 +1,13 @@
 const global = {
     currentPage: window.location.pathname,
+    page: 1,
+    totalPages: 1,
+
+    search:{
+        term: '',
+        page: 1,
+        totalPages:1
+    },
 
     api: {
         apiKey: '7e6a79da-f0fa-41f5-b7fc-c15b7ed43865',
