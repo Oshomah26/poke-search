@@ -30,19 +30,35 @@ async function displayPopularcards(){
                     </p>
                 </div>
         `
+
+
         document.querySelector('#popular-cards').appendChild(div);
+
+       
 
     })
     console.log(results);
+}
+
+function showSpinner(){
+    document.querySelector('.spinner').classList.add('show');
+}
+
+function hideSpinner(){
+    document.querySelector('.spinner').classList.remove('show');
 }
 
 async function fetchAPIData(endpoint){
     const API_KEY = global.api.apiKey;
     const API_URL = global.api.apiURL;
 
+    showSpinner()
+
     const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US`);
     const data = await response.json();
     
+    hideSpinner()
+
     return data
 }
 
