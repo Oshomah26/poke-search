@@ -21,7 +21,7 @@ async function displayPopularcards(){
         const div = document.createElement('div');
         div.classList.add('card');
         div.innerHTML = `
-        <a href="/details.html?id=1">
+        <a href="/details.html?id=${card.id}">
                     <img src="https://images.pokemontcg.io/${(card.id).split('-')[0]}/1.png" alt="Card-title" class="card-img-top">
                 </a>
                 <div class="card-body"><h5 class="card-title">${card.name}</h5>
@@ -40,6 +40,15 @@ async function displayPopularcards(){
     console.log(results);
 }
 
+async function displayCardDetails(){
+    const cardID = window.location.search.split('=')[1];
+    const card = await fetchAPIData(`cards/${cardID}`);
+
+    console.log(card);
+
+
+}
+
 function showSpinner(){
     document.querySelector('.spinner').classList.add('show');
 }
@@ -52,12 +61,12 @@ async function fetchAPIData(endpoint){
     const API_KEY = global.api.apiKey;
     const API_URL = global.api.apiURL;
 
-    showSpinner()
+    // showSpinner()
 
     const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US`);
     const data = await response.json();
     
-    hideSpinner()
+    // hideSpinner()
 
     return data
 }
@@ -69,6 +78,7 @@ function init(){
         console.log(global.currentPage);
         break;
         case'/details.html':
+        displayCardDetails();
         console.log(global.currentPage);
         break;
         case'/search.html':
