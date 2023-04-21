@@ -44,6 +44,21 @@ async function displayCardDetails(){
     const cardID = window.location.search.split('=')[1];
     const card = await fetchAPIData(`cards/${cardID}`);
 
+    const div = document.createElement('div');
+    div.classList.add('details')
+    div.innerHTML = `<div><img src="#" alt="Meh" class="card-img-top"></div>
+          
+    <div class="main-details">
+      <h2>Hehe</h2>
+      <p>
+        <p class="text-muted">Super type: Water</p>
+        <p class="text-muted">Rarity: Hegh</p>
+        <p class="text-muted">Average sell price: $</p>
+        <a href="" class="btn">Visit price page</a>
+    </div>`
+
+    document.querySelector('#details-card').appendChild(div);
+
     console.log(card);
 
 
