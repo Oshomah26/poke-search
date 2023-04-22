@@ -6,7 +6,8 @@ const global = {
     search:{
         term: '',
         page: 1,
-        totalPages:1
+        totalPages:1,
+        totalResults: 0
     },
 
     api: {
@@ -45,6 +46,14 @@ async function search(){
     const urlParams = new URLSearchParams(queryString);
 
     global.search.term = urlParams('search-term');
+
+    if(global.search.term === ''){
+        const {results, total_pages, page, total_results} = await searchAPIdata();
+    }
+
+    global.search.page = page;
+    global.search.totalPages = total_pages;
+    global.search.totalResults = total_results
 }
 
 async function displayCardDetails(){
