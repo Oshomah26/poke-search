@@ -40,6 +40,13 @@ async function displayPopularcards(){
     console.log(results);
 }
 
+async function search(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    global.search.term = urlParams('search-term');
+}
+
 async function displayCardDetails(){
     const cardID = window.location.search.split('=')[1];
     const card = await fetchAPIData(`cards/${cardID}`);
