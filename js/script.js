@@ -49,11 +49,24 @@ async function search(){
 
     if(global.search.term === ''){
         const {results, total_pages, page, total_results} = await searchAPIdata();
-    }
+    
 
     global.search.page = page;
     global.search.totalPages = total_pages;
-    global.search.totalResults = total_results
+    global.search.totalResults = total_results;
+
+    if(results.length === 0){
+        showAlert('No results found');
+        return;
+    }
+
+    displaySearchResults(results);
+
+    document.querySelector('#search-term').value = '';
+} else {
+    showAlert('Please enter search term');
+}
+
 }
 
 async function displayCardDetails(){
