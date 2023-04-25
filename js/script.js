@@ -45,9 +45,9 @@ async function search(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
-    global.search.term = urlParams('search-term');
+    global.search.term = urlParams.get('search-term');
 
-    if(global.search.term === ''){
+    if(global.search.term !== ''){
         const {results, total_pages, page, total_results} = await searchAPIdata();
     
 
@@ -75,19 +75,17 @@ function displaySearchResults(results){
     document.querySelector('#search-results-heading').innerHTML = '';
     document.querySelector('#pagination').innerHTML = '';
 
-    results.forEach((result) => {
+    results.forEach((card) => {
         const div = document.createElement('div');
         div.classList.add('card');
-        div.innerHTML = `<div ><img src="${result.data.images.small}" alt="${card.image}" class="card-img-top"></div>
-          
-        <div class="main-details">
-          <h2>${result.data.name}</h2>
-          <p>
-            <p class="text-muted">Super type: ${result.data.supertype}</p>
-            <p class="text-muted">Rarity: ${result.data.rarity}</p>
-            <p class="text-muted">Average sell price: $ ${result.data.cardmarket.prices.averageSellPrice}</p>
-            <a href="${result.data.cardmarket.url}" class="btn">Visit price page</a>
-        </div>
+        div.innerHTML = `<a href="/details.html?id=${card.id}">
+        <img src="https://images.pokemontcg.io/${(card.id).split('-')[0]}/1.png" alt="Card-title" class="card-img-top">
+    </a>
+    <div class="card-body"><h5 class="card-title">${card.name}</h5>
+        <p class="card-text">
+            <small class="text-muted">Rarity: ${card.rarity}</small>
+        </p>
+    </div>
         `
     })
 }
@@ -127,18 +125,18 @@ async function searchAPIdata(){
     const API_KEY = global.api.apiKey;
     const API_URL = global.api.apiURL;
 
-    showSpinner();
+    // showSpinner();
 
     const response = await fetch(`${API_URL}search/?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`);
     const data = await response.json();
 
-    hideSpinner();
+    // hideSpinner();
 
     return data;
 }
 
 function showAlert(message, className = 'error'){
-    const alertEl = document.createElement(div);
+    const alertEl = document.createElement('div');
     alertEl.classList.add('alert', className);
     alertEl.appendChild(document.createTextNode(message));
     document.querySelector('#alert').appendChild(alertEl);
@@ -171,6 +169,7 @@ function init(){
         console.log(global.currentPage);
         break;
         case'/search.html':
+        search();
         console.log(global.currentPage);
     }
 }
