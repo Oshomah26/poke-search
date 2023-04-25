@@ -69,6 +69,29 @@ async function search(){
 
 }
 
+function displaySearchResults(results){
+    // Clear previous results
+    document.querySelector('#search-results').innerHTML = '';
+    document.querySelector('#search-results-heading').innerHTML = '';
+    document.querySelector('#pagination').innerHTML = '';
+
+    results.forEach((result) => {
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.innerHTML = `<div ><img src="${result.data.images.small}" alt="${card.image}" class="card-img-top"></div>
+          
+        <div class="main-details">
+          <h2>${result.data.name}</h2>
+          <p>
+            <p class="text-muted">Super type: ${result.data.supertype}</p>
+            <p class="text-muted">Rarity: ${result.data.rarity}</p>
+            <p class="text-muted">Average sell price: $ ${result.data.cardmarket.prices.averageSellPrice}</p>
+            <a href="${result.data.cardmarket.url}" class="btn">Visit price page</a>
+        </div>
+        `
+    })
+}
+
 async function displayCardDetails(){
     const cardID = window.location.search.split('=')[1];
     const card = await fetchAPIData(`cards/${cardID}`);
