@@ -47,48 +47,54 @@ async function search(){
 
     global.search.term = urlParams.get('search-term');
 
-    if(global.search.term !== ''){
-        const {results, total_pages, page, total_results} = await searchAPIdata();
+    console.log(queryString);
+
+     if(global.search.term !== '' && global.search.term !== null){
+        const results = await searchAPIdata();
+        console.log(results);
     
 
-    global.search.page = page;
-    global.search.totalPages = total_pages;
-    global.search.totalResults = total_results;
+//     global.search.page = page;
+//     global.search.totalPages = total_pages;
+//     global.search.totalResults = total_results;
 
-    if(results.length === 0){
-        showAlert('No results found');
+     if(results.length === 0){
+         showAlert('No results found');
         return;
-    }
+     }
 
-    displaySearchResults(results);
+    //  displaySearchResults(results);
 
     document.querySelector('#search-term').value = '';
-} else {
-    showAlert('Please enter search term');
+ } 
+else {
+   showAlert('Please enter search term');
 }
+
+
 
 }
 
-function displaySearchResults(results){
-    // Clear previous results
-    document.querySelector('#search-results').innerHTML = '';
-    document.querySelector('#search-results-heading').innerHTML = '';
-    document.querySelector('#pagination').innerHTML = '';
+// function displaySearchResults(results){
+//     // Clear previous results
+//     document.querySelector('#search-results').innerHTML = '';
+//     document.querySelector('#search-results-heading').innerHTML = '';
+//     document.querySelector('#pagination').innerHTML = '';
 
-    results.forEach((card) => {
-        const div = document.createElement('div');
-        div.classList.add('card');
-        div.innerHTML = `<a href="/details.html?id=${card.id}">
-        <img src="https://images.pokemontcg.io/${(card.id).split('-')[0]}/1.png" alt="Card-title" class="card-img-top">
-    </a>
-    <div class="card-body"><h5 class="card-title">${card.name}</h5>
-        <p class="card-text">
-            <small class="text-muted">Rarity: ${card.rarity}</small>
-        </p>
-    </div>
-        `
-    })
-}
+//     results.forEach((card) => {
+//         const div = document.createElement('div');
+//         div.classList.add('card');
+//         div.innerHTML = `<a href="/details.html?id=${card.id}">
+//         <img src="https://images.pokemontcg.io/${(card.id).split('-')[0]}/1.png" alt="Card-title" class="card-img-top">
+//     </a>
+//     <div class="card-body"><h5 class="card-title">${card.name}</h5>
+//         <p class="card-text">
+//             <small class="text-muted">Rarity: ${card.rarity}</small>
+//         </p>
+//     </div>
+//         `
+//     })
+// }
 
 async function displayCardDetails(){
     const cardID = window.location.search.split('=')[1];
@@ -124,10 +130,12 @@ function hideSpinner(){
 async function searchAPIdata(){
     const API_KEY = global.api.apiKey;
     const API_URL = global.api.apiURL;
+    
 
     // showSpinner();
 
-    const response = await fetch(`${API_URL}search/?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`);
+    // const response = await fetch(`${API_URL}search/?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`);
+    const response = await fetch(`${API_URL}/cards?q=name:${global.search.term}`);
     const data = await response.json();
 
     // hideSpinner();
