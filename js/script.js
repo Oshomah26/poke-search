@@ -63,7 +63,7 @@ async function search(){
         return;
      }
 
-    //  displaySearchResults(results);
+     displaySearchResults(results);
 
     document.querySelector('#search-term').value = '';
  } 
@@ -75,26 +75,30 @@ else {
 
 }
 
-// function displaySearchResults(results){
-//     // Clear previous results
-//     document.querySelector('#search-results').innerHTML = '';
-//     document.querySelector('#search-results-heading').innerHTML = '';
-//     document.querySelector('#pagination').innerHTML = '';
+function displaySearchResults(results){
+    // Clear previous results
+    document.querySelector('#search-results').innerHTML = '';
+    document.querySelector('#search-results-heading').innerHTML = '';
+    document.querySelector('#pagination').innerHTML = '';
 
-//     results.forEach((card) => {
-//         const div = document.createElement('div');
-//         div.classList.add('card');
-//         div.innerHTML = `<a href="/details.html?id=${card.id}">
-//         <img src="https://images.pokemontcg.io/${(card.id).split('-')[0]}/1.png" alt="Card-title" class="card-img-top">
-//     </a>
-//     <div class="card-body"><h5 class="card-title">${card.name}</h5>
-//         <p class="card-text">
-//             <small class="text-muted">Rarity: ${card.rarity}</small>
-//         </p>
-//     </div>
-//         `
-//     })
-// }
+    (results.data).forEach((result) => {
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.innerHTML = `<a href="/details.html?id=${result.id}">
+        <img src="https://images.pokemontcg.io/${(result.id).split('-')[0]}/1.png" alt="Card-title" class="card-img-top">
+    </a>
+    <div class="card-body"><h5 class="card-title">${result.name}</h5>
+        <p class="card-text">
+            <small class="text-muted">Rarity: ${result.rarity}</small>
+        </p>
+    </div>
+        `
+    document.querySelector('#search-results-heading').innerHTML = `<h2>Amount of cards found: ${result.totalCount} </h2>`
+    document.querySelector('#search-results').appendChild(div);
+    });
+
+    
+}
 
 async function displayCardDetails(){
     const cardID = window.location.search.split('=')[1];
