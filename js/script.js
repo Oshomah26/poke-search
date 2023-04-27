@@ -97,7 +97,19 @@ function displaySearchResults(results){
     document.querySelector('#search-results').appendChild(div);
     });
 
+    displayPagination();
     
+}
+
+function displayPagination(){
+    const div = document.createElement('div');
+    div.classList.add('pagination');
+    div.innerHTML = `<button class="btn btn-primary" id="prev">Prev</button>
+    <button class="btn btn-primary" id="next">Next</button>
+    <div class="page-counter">Page ${global.search.page}</div>`
+
+    document.querySelector('#pagination').appendChild(div);
+
 }
 
 async function displayCardDetails(){
@@ -136,13 +148,13 @@ async function searchAPIdata(){
     const API_URL = global.api.apiURL;
     
 
-    // showSpinner();
+    showSpinner();
 
     // const response = await fetch(`${API_URL}search/?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`);
     const response = await fetch(`${API_URL}/cards?q=name:${global.search.term}`);
     const data = await response.json();
 
-    // hideSpinner();
+    hideSpinner();
 
     return data;
 }
@@ -160,12 +172,12 @@ async function fetchAPIData(endpoint){
     const API_KEY = global.api.apiKey;
     const API_URL = global.api.apiURL;
 
-    // showSpinner()
+    showSpinner()
 
     const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US`);
     const data = await response.json();
     
-    // hideSpinner()
+    hideSpinner()
 
     return data
 }
