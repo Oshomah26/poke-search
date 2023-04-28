@@ -27,7 +27,7 @@ async function displayPopularcards(){
                 </a>
                 <div class="card-body"><h5 class="card-title">${card.name}</h5>
                     <p class="card-text">
-                        <small class="text-muted">Rarity: ${card.rarity}</small>
+                        <small class="text-muted">Rarity:${card.rarity === null ? "Unavailable" : card.rarity} }</small>
                     </p>
                 </div>
         `
@@ -85,7 +85,7 @@ function displaySearchResults(results){
         const div = document.createElement('div');
         div.classList.add('card');
         div.innerHTML = `<a href="/details.html?id=${result.id}">
-        <img src="https://images.pokemontcg.io/${(result.id).split('-')[0]}/1.png" alt="Card-title" class="card-img-top">
+        <img src="${result.images.small}" alt="Card-title" class="card-img-top">
     </a>
     <div class="card-body"><h5 class="card-title">${result.name}</h5>
         <p class="card-text">
@@ -124,8 +124,8 @@ async function displayCardDetails(){
       <p>
         <p class="text-muted">Super type: ${card.data.supertype}</p>
         <p class="text-muted">Rarity: ${card.data.rarity}</p>
-        <p class="text-muted">Average sell price: $ ${card.data.cardmarket.prices.averageSellPrice}</p>
-        <a href="${card.data.cardmarket.url}" class="btn">Visit price page</a>
+        <p class="text-muted">Average sell price:  ${card.data.cardmarket === undefined ? "Price unavailable " : ("$" + card.data.cardmarket.prices.averageSellPrice) }</p>
+        <a href="${card.data.cardmarket === undefined ? "#" : card.data.cardmarket.url}" class="btn">${card.data.cardmarket === undefined ? "link unavailable" : "Visit price page"}</a>
     </div>`
 
     document.querySelector('#card-details').appendChild(div);
