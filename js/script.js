@@ -27,7 +27,7 @@ async function displayPopularcards(){
                 </a>
                 <div class="card-body"><h5 class="card-title">${card.name}</h5>
                     <p class="card-text">
-                        <small class="text-muted">Rarity:${card.rarity === null ? "Unavailable" : card.rarity} }</small>
+                        <small class="text-muted">Rarity:${card.rarity === null ? "Unavailable" : card.rarity} </small>
                     </p>
                 </div>
         `
