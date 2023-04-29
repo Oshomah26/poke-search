@@ -93,7 +93,7 @@ function displaySearchResults(results){
         </p>
     </div>
         `
-    document.querySelector('#search-results-heading').innerHTML = `<h2>Amount of cards found: ${result.totalCount} </h2>`
+    document.querySelector('#search-results-heading').innerHTML = `<h2>Amount of cards found: ${global.search.totalResults} </h2>`
     document.querySelector('#search-results').appendChild(div);
     });
 
