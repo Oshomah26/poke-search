@@ -51,12 +51,14 @@ async function search(){
 
      if(global.search.term !== '' && global.search.term !== null){
         const results = await searchAPIdata();
+        const totalCount = await searchAPIdata();
+        const page = await searchAPIdata()
         console.log(results);
     
 
-//     global.search.page = page;
+     global.search.page = page;
 //     global.search.totalPages = total_pages;
-//     global.search.totalResults = total_results;
+     global.search.totalResults = totalCount;
 
      if(results.length === 0){
          showAlert('No results found');
@@ -93,11 +95,12 @@ function displaySearchResults(results){
         </p>
     </div>
         `
-    document.querySelector('#search-results-heading').innerHTML = `<h2>Amount of cards found: ${global.search.totalResults} </h2>`
+    document.querySelector('#search-results-heading').innerHTML = `<h2>Amount of cards found: ${global.search.totalResults.totalCount} </h2>`
     document.querySelector('#search-results').appendChild(div);
     });
 
     displayPagination();
+    
     
 }
 

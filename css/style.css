@@ -283,6 +283,10 @@ text-secondary{
     color: bisque;
   }
 
+  #search-results-heading{
+    margin-top: 20px;
+  }
+
   .pagination{
     margin-top: 10px;
   }
