@@ -27,7 +27,7 @@ async function displayPopularcards(){
                 </a>
                 <div class="card-body"><h5 class="card-title">${card.name}</h5>
                     <p class="card-text">
-                        <small class="text-muted">Rarity:${card.rarity === null ? "Unavailable" : card.rarity} </small>
+                        <small class="text-muted">Rarity: ${card.rarity === undefined ? "Unavailable" : card.rarity} </small>
                     </p>
                 </div>
         `
@@ -57,7 +57,6 @@ async function search(){
     
 
      global.search.page = page;
-//     global.search.totalPages = total_pages;
      global.search.totalResults = totalCount;
 
      if(results.length === 0){
@@ -99,7 +98,7 @@ function displaySearchResults(results){
     document.querySelector('#search-results').appendChild(div);
     });
 
-    displayPagination();
+    // displayPagination();
     
     
 }
@@ -126,7 +125,7 @@ async function displayCardDetails(){
       <h2>${card.data.name}</h2>
       <p>
         <p class="text-muted">Super type: ${card.data.supertype}</p>
-        <p class="text-muted">Rarity: ${card.data.rarity}</p>
+        <p class="text-muted">Rarity: ${card.data.rarity === undefined ? " Rarity Unavailable" : card.data.rarity }</p>
         <p class="text-muted">Average sell price:  ${card.data.cardmarket === undefined ? "Price unavailable " : ("$" + card.data.cardmarket.prices.averageSellPrice) }</p>
         <a href="${card.data.cardmarket === undefined ? "#" : card.data.cardmarket.url}" class="btn">${card.data.cardmarket === undefined ? "link unavailable" : "Visit price page"}</a>
     </div>`
@@ -153,7 +152,6 @@ async function searchAPIdata(){
 
     showSpinner();
 
-    // const response = await fetch(`${API_URL}search/?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`);
     const response = await fetch(`${API_URL}/cards?q=name:${global.search.term}`);
     const data = await response.json();
 
