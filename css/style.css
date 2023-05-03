@@ -216,6 +216,10 @@ text-secondary{
     margin-top: 20px;
   }
 
+  .main-details {
+    color: var(--color-secondary);
+  }
+
   /* Search */
 
   .search {
