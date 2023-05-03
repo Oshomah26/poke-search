@@ -97,22 +97,10 @@ function displaySearchResults(results){
     document.querySelector('#search-results-heading').innerHTML = `<h2>Amount of cards found: ${global.search.totalResults.totalCount} </h2>`
     document.querySelector('#search-results').appendChild(div);
     });
-
-    // displayPagination();
     
     
 }
 
-function displayPagination(){
-    const div = document.createElement('div');
-    div.classList.add('pagination');
-    div.innerHTML = `<button class="btn btn-primary" id="prev">Prev</button>
-    <button class="btn btn-primary" id="next">Next</button>
-    <div class="page-counter">Page ${global.search.page}</div>`
-
-    document.querySelector('#pagination').appendChild(div);
-
-}
 
 async function displayCardDetails(){
     const cardID = window.location.search.split('=')[1];
@@ -146,7 +134,6 @@ function hideSpinner(){
 }
 
 async function searchAPIdata(){
-    const API_KEY = global.api.apiKey;
     const API_URL = global.api.apiURL;
     
 
